@@ -28,5 +28,7 @@ return output == '' ? number : output
 
 }
 
+// Object entries devuelve un array de arrays con nombre y valor
+
 
 
