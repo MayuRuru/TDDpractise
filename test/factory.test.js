@@ -1,5 +1,4 @@
 import { expect, describe, it } from "vitest";
-import { f } from "vitest/dist/index-1e9f7f83";
 
 const factory = (from, to) => {
     //if(from == undefined) throw new Error('from is required')
