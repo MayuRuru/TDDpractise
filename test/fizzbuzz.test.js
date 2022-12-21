@@ -1,21 +1,6 @@
 import { expect, describe, it } from "vitest"
 import { fizzbuzz } from "../src/fizzbuzz"
 
-//Step 2: create a function
-//Setp 4+6: check if param is a number two different ways
-
-// const fizzbuzz = (number) => {
-//     if(typeof number != 'number') throw new Error('param must be a number')  
-//     if(Number.isNaN(number)) throw new Error('param must be a number')
-//     //return 1
-
-//     //if(number%5 == 0 && number%3 == 0) return 'fizzbuzz'
-//     if(number%15 == 0) return 'fizzbuzz'
-//     if(number%3 == 0) return 'fizz'
-//     if(number%5 == 0) return 'buzz'
-//     return number
-// }
-
 
 // Step 1: it should be a function
 // This test becomes redundant later on, we refactor by deleting it:
