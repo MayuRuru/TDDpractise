@@ -1,51 +1,6 @@
 import { render, screen, cleanup, fireEvent } from "@testing-library/react";
-import { useState } from "react";
 import { afterEach, describe, it, expect } from "vitest";
-
-const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-const rows = [
-    [7, 8, 9],
-    [4, 5, 6],
-    [1, 2, 3],
-    [0]
-]
-
-const operations = ['+', '-', '*', '/']
-const equalSign = '='
-
-const Calculator = () => {
-const [value, setValue] = useState('')
-
-const handleUserInputs = input => () => setValue(value.concat(input))
-
-    return (
-        <section>
-            <h1>Calculator</h1>
-            <input value={value} readOnly/>
-            
-            <div role='grid'>
-            {rows.map((row, index) => (
-                <div key={index} role='row'>
-                    {row.map(number => (
-                    <button onClick={handleUserInputs(number)} key={number}>
-                        {number}
-                    </button>
-                    ))}
-                </div>
-            ))}
-            {
-                operations.map(operation => (
-                    <button onClick={handleUserInputs(operation)} key={operation}>
-                        {operation}
-                        </button>
-                ))
-            }
-            <span>{equalSign}</span>
-            </div>
-    </section>
-    )
-}
+import { Calculator, operations, numbers, equalSign} from '../src/calculator'
 
 describe('Calculator', () => {
 afterEach(cleanup)
@@ -134,5 +89,23 @@ afterEach(cleanup)
 
         const input = screen.getByRole('textbox')
         expect(input.value).toBe('1+1')
+    })
+
+    it('should calculate user input and show results', () =>{
+        render(<Calculator />)
+
+        const one = screen.getByText('1')
+        fireEvent.click(one)
+
+        const plus = screen.getByText('+')
+        fireEvent.click(plus)
+
+        fireEvent.click(one)
+
+        const equal = screen.getByText('=')
+        fireEvent.click(equal)
+
+        const input = screen.getByRole('textbox')
+        expect(input.value).toBe('2')
     })
 })
