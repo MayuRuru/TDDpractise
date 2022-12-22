@@ -1,9 +1,12 @@
 {
   "devDependencies": {
+    "@testing-library/react": "^13.4.0",
+    "@vitejs/plugin-react": "^3.0.0",
+    "happy-dom": "^8.1.1",
     "standard": "^17.0.0",
     "vitest": "^0.26.1"
   },
-   "eslintConfig": {
+  "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json"
   },
   "name": "tdd-practice",
@@ -36,6 +39,8 @@
     "picocolors": "^1.0.0",
     "pkg-types": "^1.0.1",
     "postcss": "^8.4.20",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "resolve": "^1.22.1",
     "rollup": "^3.7.5",
     "source-map": "^0.6.1",
