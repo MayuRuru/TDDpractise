@@ -17,7 +17,7 @@ const equalSign = '='
 const Calculator = () => {
 const [value, setValue] = useState('')
 
-const handleNumberInputs = number => () => setValue(value.concat(number))
+const handleUserInputs = input => () => setValue(value.concat(input))
 
     return (
         <section>
@@ -27,13 +27,18 @@ const handleNumberInputs = number => () => setValue(value.concat(number))
             <div role='grid'>
             {rows.map((row, index) => (
                 <div key={index} role='row'>
-                    {row.map(number => 
-                    <button onClick={handleNumberInputs(number)} key={number}>{number}</button>)}
+                    {row.map(number => (
+                    <button onClick={handleUserInputs(number)} key={number}>
+                        {number}
+                    </button>
+                    ))}
                 </div>
             ))}
             {
                 operations.map(operation => (
-                    <span key={operation}>{operation}</span>
+                    <button onClick={handleUserInputs(operation)} key={operation}>
+                        {operation}
+                        </button>
                 ))
             }
             <span>{equalSign}</span>
@@ -114,5 +119,20 @@ afterEach(cleanup)
 
         const input = screen.getByRole('textbox')
         expect(input.value).toBe('123')
+    })
+
+    it('should show user input after clicking numbers and operations', () =>{
+        render(<Calculator />)
+
+        const one = screen.getByText('1')
+        fireEvent.click(one)
+
+        const plus = screen.getByText('+')
+        fireEvent.click(plus)
+
+        fireEvent.click(one)
+
+        const input = screen.getByRole('textbox')
+        expect(input.value).toBe('1+1')
     })
 })
